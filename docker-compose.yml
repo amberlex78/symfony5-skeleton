@@ -1,0 +1,60 @@
+version: "3.8"
+services:
+
+  proxy:
+    image: jwilder/nginx-proxy:alpine
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    ports:
+      - "80:80"
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_name
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: secret
+    volumes:
+      - ./var/mysql:/var/lib/mysql
+
+  php:
+    build:
+      context: ./docker/development/php
+    restart: always
+    volumes:
+      - ./:/app
+      - composer:/root/.composer/cache
+    tty: true
+    depends_on:
+      - mysql
+
+  nginx:
+    build:
+      context: ./docker/development/nginx
+    restart: always
+    volumes:
+      - ./:/app
+    environment:
+      VIRTUAL_HOST: symfony5-skeleton.test
+    depends_on:
+      - php
+      - proxy
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      VIRTUAL_HOST: adminer.test
+    depends_on:
+      - proxy
+
+volumes:
+  composer:

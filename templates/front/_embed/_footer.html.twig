@@ -1,0 +1,19 @@
+{#<div class="container">#}
+{#    <span class="text-muted">Place sticky footer content here.</span>#}
+{#</div>#}
+
+<div class="container d-flex align-items-center justify-content-between small">
+    <div class="text-muted">
+        Copyright &copy; Symfony Skeleton App,
+        {% set currentYear = 'now'|date('Y') %}
+        {% if currentYear == '2021' %}
+            {{ currentYear }}
+        {% else %}
+            2021 - {{ currentYear }}
+        {% endif %}
+    </div>
+    <div>
+        <i class="fab fa-github fa-fw"></i>
+        <a href="https://github.com/amberlex78/symfony5-skeleton" target="_blank">GitHub</a>
+    </div>
+</div>
