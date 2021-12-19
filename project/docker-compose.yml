@@ -7,28 +7,28 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     ports:
-      - "${NGINX_PORT}:80"
+      - "80:80"
 
   mysql:
     image: mysql:8.0
     restart: always
     ports:
-      - "${MYSQL_PORT}:3306"
+      - "3306:3306"
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_name
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: secret
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - ./var/mysql:/var/lib/mysql
 
   php:
     build:
       context: ./docker/development/php
     restart: always
     volumes:
-      - ./project:/app
+      - ./:/app
       - composer:/root/.composer/cache
     tty: true
     depends_on:
@@ -39,9 +39,9 @@ services:
       context: ./docker/development/nginx
     restart: always
     volumes:
-      - ./project:/app
+      - ./:/app
     environment:
-      VIRTUAL_HOST: ${NGINX_VIRTUAL_HOST}
+      VIRTUAL_HOST: symfony5-skeleton.test
     depends_on:
       - php
       - proxy
@@ -50,9 +50,9 @@ services:
     image: adminer
     restart: always
     ports:
-      - "${ADMINER_PORT}:8080"
+      - "8080:8080"
     environment:
-      VIRTUAL_HOST: ${ADMINER_VIRTUAL_HOST}
+      VIRTUAL_HOST: adminer.test
     depends_on:
       - proxy
 

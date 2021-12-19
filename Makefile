@@ -1,6 +1,6 @@
 #-----------------------------------------------------------
 # docker
-init: docker-pull docker-build docker-up composer-install yarn-install run-dev
+init: docker-pull docker-build docker-up
 up: docker-up
 down: docker-down
 restart: down up
@@ -33,7 +33,7 @@ run-watch:
 seed:
 	docker-compose exec php bin/console doctrine:schema:drop --full-database --force
 	docker-compose exec php bin/console doctrine:schema:update --force
-	docker-compose exec php bin/console doctrine:fixtures:load -n
+	#docker-compose exec php bin/console doctrine:fixtures:load -n
 
 #-----------------------------------------------------------
 # for local
