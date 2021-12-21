@@ -2,7 +2,7 @@
 
 Only for DEV, not for production!
 
-**Docker + PHP 8.0 + MySQL 8 + Nginx + Symfony 5.4 + Bootstrap 5 + Adminer**
+**Docker + PHP 8.1 + MySQL 8 + Nginx + XDebug 3.1.2 + Symfony 5.4 + Bootstrap 5 + Adminer**
 
 ## Setup
 
@@ -20,7 +20,7 @@ git clone https://github.com/amberlex78/symfony5-skeleton
 cd symfony5-skeleton
 cp project/.env project/.env.local
 make init
-make seed
+make setup
 ```
 
 ### Database
@@ -38,7 +38,7 @@ DATABASE_URL="mysql://symfony:symfony@mysql:3306/symfony?serverVersion=8.0"
 
 Docker up `docker-compose up -d` or:
 ```
-make init
+make up
 ```
 
 ### Down

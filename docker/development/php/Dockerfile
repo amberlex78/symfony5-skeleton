@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:8.1-fpm
 
 # First
 RUN export DEBIAN_FRONTEND="noninteractive" && \
@@ -51,8 +51,8 @@ RUN docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd && \
     xsl \
     zip
 
-## Versions: https://xdebug.org/download/historical
-ENV XDEBUG_VERSION 3.0.4
+# Versions: https://xdebug.org/download/historical
+ENV XDEBUG_VERSION 3.1.2
 RUN pecl install xdebug-$XDEBUG_VERSION && docker-php-ext-enable xdebug
 
 # NodeJS with NPM, Yarn

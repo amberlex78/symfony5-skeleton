@@ -14,6 +14,13 @@ docker-up:
 docker-down:
 	docker-compose down --remove-orphans
 
+exec:
+	docker-compose exec php bash
+
+#-----------------------------------------------------------
+# Setup
+setup: composer-install yarn-install run-dev
+
 #-----------------------------------------------------------
 # composer
 composer-install:
@@ -30,10 +37,18 @@ run-dev:
 run-watch:
 	docker-compose exec php yarn encore dev --watch
 
-seed:
+#-----------------------------------------------------------
+# doctrine
+db-dul: db-drop db-update #db-load
+
+db-drop:
 	docker-compose exec php bin/console doctrine:schema:drop --full-database --force
+
+db-update:
 	docker-compose exec php bin/console doctrine:schema:update --force
-	#docker-compose exec php bin/console doctrine:fixtures:load -n
+
+db-load:
+	docker-compose exec php bin/console doctrine:fixtures:load -n
 
 #-----------------------------------------------------------
 # for local
