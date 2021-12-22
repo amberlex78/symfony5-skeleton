@@ -25,7 +25,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'front_register')]
-    public function register(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $passwordHasher): Response
+    public function register(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $hasher): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
@@ -33,7 +33,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $plainPassword = $form->get('plainPassword')->getData();
-            $user->setPassword($passwordHasher->hashPassword($user, $plainPassword));
+            $user->setPassword($hasher->hashPassword($user, $plainPassword));
             $user->setRoles([UserRolesStorage::ROLE_USER]);
 
             $em->persist($user);
