@@ -21,6 +21,7 @@ cd symfony5-skeleton
 cp project/.env project/.env.local
 make init
 make setup
+sudo chown -R $USER:$USER project/
 ```
 
 ### Database
@@ -32,6 +33,12 @@ Database connection in the `project/.env.local` file:
 DATABASE_URL="mysql://symfony:symfony@mysql:3306/symfony?serverVersion=8.0"
 ```
 
+### Seed
+If you want to populate the database with data, run the command: 
+```
+make db-dul
+```
+(schema:drop, schema:update, fixtures:load)
 ## Docker
 
 ### Up

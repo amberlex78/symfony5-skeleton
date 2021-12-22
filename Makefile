@@ -39,7 +39,7 @@ run-watch:
 
 #-----------------------------------------------------------
 # doctrine
-db-dul: db-drop db-update #db-load
+db-dul: db-drop db-update db-load
 
 db-drop:
 	docker-compose exec php bin/console doctrine:schema:drop --full-database --force
