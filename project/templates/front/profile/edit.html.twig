@@ -1,0 +1,28 @@
+{% extends 'front/layouts/base.html.twig' %}
+
+{% block title %}Profile - Edit{% endblock %}
+
+{% block body %}
+    {% form_theme form 'bootstrap_5_horizontal_layout.html.twig' %}
+    <h1>Edit Profile</h1>
+    {{ form_start(form) }}
+    <div class="mb-3 row">
+        <label for="userEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control-plaintext" id="userEmail" value="{{ app.user.email }}" readonly>
+        </div>
+    </div>
+    <div class="col-sm-10 offset-sm-2 pt-2 px-1">
+        <p class="lead">Change password</p>
+    </div>
+    {{ form_row(form.plainPassword) }}
+    <div class="col-sm-10 offset-sm-2 pt-2 px-1">
+        <button type="submit" class="btn btn-primary">
+            <i class="far fa-save fa-fw"></i> Save
+        </button>
+        <a href="{{ path('front_profile_show') }}" class="btn btn-outline-primary">
+            <i class="far fa-address-card fa-fw"></i> Profile
+        </a>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

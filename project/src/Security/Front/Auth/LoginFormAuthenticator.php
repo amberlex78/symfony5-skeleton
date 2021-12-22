@@ -4,8 +4,8 @@ namespace App\Security\Front\Auth;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Security;
@@ -25,7 +25,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function __construct(
         private UrlGeneratorInterface $urlGenerator,
-        private RequestStack $requestStack,
+        private FlashBagInterface $flashBag,
     ) {
     }
 
@@ -51,7 +51,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        $this->requestStack->getSession()->getFlashBag()->add('success', 'You are logged in!');
+        $this->flashBag->add('success', 'You are logged in!');
 
         return new RedirectResponse($this->urlGenerator->generate('front_home'));
     }

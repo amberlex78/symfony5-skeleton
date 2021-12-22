@@ -3,35 +3,25 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
-
     {% form_theme form 'bootstrap_5_layout.html.twig' %}
-
+    <h1>Sign up</h1>
     <p>Sign up for your account</p>
-
     {{ form_start(form) }}
-
     <div class="form-floating mb-3">
         {{ form_widget(form.email) }}
         {{ form_label(form.email) }}
         {{ form_errors(form.email) }}
     </div>
-
     <div class="form-floating mb-3">
         {{ form_widget(form.plainPassword.first) }}
         {{ form_label(form.plainPassword.first) }}
         {{ form_errors(form.plainPassword.first) }}
     </div>
-
     <div class="form-floating mb-3">
         {{ form_widget(form.plainPassword.second) }}
         {{ form_label(form.plainPassword.second) }}
         {{ form_errors(form.plainPassword.second) }}
     </div>
-
     <button type="submit" class="btn btn-primary d-inline">Sign up</button>
-
     {{ form_end(form) }}
 {% endblock %}

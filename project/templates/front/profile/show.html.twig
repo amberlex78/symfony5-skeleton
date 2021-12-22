@@ -1,0 +1,25 @@
+{% extends 'front/layouts/base.html.twig' %}
+
+{% block title %}Profile - Show{% endblock %}
+
+{% block body %}
+    <h1>Your profile</h1>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td>ID:</td>
+            <td>{{ app.user.id }}</td>
+        </tr>
+        <tr>
+            <td>Your email:</td>
+            <td>{{ app.user.email }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('front_profile_edit') }}" class="btn btn-primary">
+        <i class="fas fa-edit fa-fw"></i> Edit
+    </a>
+    <a href="{{ path('front_logout') }}" class="btn btn-outline-primary">
+        <i class="fas fa-sign-out-alt fa-fw"></i> Logout
+    </a>
+{% endblock %}

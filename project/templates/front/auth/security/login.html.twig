@@ -3,17 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.email }}, <a href="{{ path('front_logout') }}">Logout</a>
-        </div>
-    {% endif %}
-
+    <h1>Log in</h1>
     <p>Log in to continue</p>
     <form method="post">
         <div class="form-floating mb-3">
@@ -34,5 +24,4 @@
         </div>
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
     </form>
-</form>
 {% endblock %}

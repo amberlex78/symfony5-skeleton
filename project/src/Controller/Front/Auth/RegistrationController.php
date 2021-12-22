@@ -50,6 +50,8 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('front/auth/registration/confirmation_email.html.twig')
             );
 
+            $this->addFlash('success', 'Please Confirm your Email!');
+
             return $this->redirectToRoute('front_home');
         }
 
