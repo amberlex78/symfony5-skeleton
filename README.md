@@ -78,3 +78,13 @@ user@example.com   - User
 admin@example.com  - Admin
 ```
 Password: `password`
+
+## Screenshots
+
+![](./doc/login.png)
+
+![](./doc/logged.png)
+
+![](./doc/edit-profile.png)
+
+![](./doc/admin.png)
