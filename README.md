@@ -33,12 +33,14 @@ Database connection in the `project/.env.local` file:
 DATABASE_URL="mysql://symfony:symfony@mysql:3306/symfony?serverVersion=8.0"
 ```
 
-### Seed
-If you want to populate the database with data, run the command: 
+### Seeding
+
+Seeding creates users in the database
 ```
 make db-dul
 ```
 (schema:drop, schema:update, fixtures:load)
+
 ## Docker
 
 ### Up
@@ -63,3 +65,16 @@ Front:
 ```
 http://symfony5-skeleton.test
 ```
+
+Admin:
+```
+http://symfony5-skeleton.test
+```
+
+## Users
+
+```
+user@example.com   - User
+admin@example.com  - Admin
+```
+Password: `password`
