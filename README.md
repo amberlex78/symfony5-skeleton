@@ -68,7 +68,7 @@ http://symfony5-skeleton.test
 
 Admin:
 ```
-http://symfony5-skeleton.test
+http://symfony5-skeleton.test/admin
 ```
 
 ## Users
