@@ -2,7 +2,7 @@ FROM php:8.1-fpm
 
 # First
 RUN export DEBIAN_FRONTEND="noninteractive" && \
-    apt-get update && apt-get install -y dialog apt-utils libpq-dev zip unzip curl wget git && rm -rf /var/lib/apt/lists/* && \
+    apt-get update && apt-get install -y dialog apt-utils libpq-dev zip unzip curl wget git && \
     echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 # Imagick and GD
@@ -15,8 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     pecl install imagick && \
     docker-php-ext-enable imagick && \
     docker-php-ext-configure gd --with-freetype=/usr/include && \
-    docker-php-ext-install gd && \
-    rm -rf /var/lib/apt/lists/*
+    docker-php-ext-install gd
 
 # Packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
