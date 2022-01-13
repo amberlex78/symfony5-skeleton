@@ -24,7 +24,7 @@ make setup
 sudo chown -R $USER:$USER project/
 ```
 
-### Database
+## Database
 
 See database connection parameters in the `.env` file.
 
